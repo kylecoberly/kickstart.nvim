@@ -22,6 +22,9 @@ vim.keymap.set("n", "<Leader>O", "O<Esc>")
 vim.keymap.set("n", "<Leader>o", "o<Esc>")
 vim.g.goyo_width = 60
 
+vim.keymap.set("n", "\\", ":NeoTreeRevealToggle<CR>")
+vim.keymap.set("n", "ga", ":Git add %:p<CR><CR>")
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -63,6 +66,22 @@ require('lazy').setup({
     config = function()
       require('neo-tree').setup {}
     end,
+    opts = {
+      git_status = {
+        window = {
+          position = "float",
+          mappings = {
+            ["A"]  = "git_add_all",
+            ["gu"] = "git_unstage_file",
+            ["ga"] = "git_add_file",
+            ["gr"] = "git_revert_file",
+            ["gc"] = "git_commit",
+            ["gp"] = "git_push",
+            ["gg"] = "git_commit_and_push",
+          }
+        }
+      }
+    }
   },
   -- { import = "lazyvim.plugins.extras.lang.typescript" },
 
